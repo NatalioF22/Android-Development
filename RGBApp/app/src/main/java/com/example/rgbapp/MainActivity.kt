@@ -2,6 +2,7 @@ package com.example.rgbapp
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -52,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DisplayRGB() {
-
+    val keyboard = LocalSoftwareKeyboardController.current
     var rValue by remember { mutableStateOf(TextFieldValue("")) }
     var gValue by remember { mutableStateOf(TextFieldValue("")) }
     var bValue by remember { mutableStateOf(TextFieldValue("")) }
@@ -104,11 +106,23 @@ fun DisplayRGB() {
         Spacer(modifier = Modifier.height(36.dp))
         Button(
             onClick = {
+                keyboard?.hide()
+
                 val rVal = rValue.text.trim()
                 val gVal = gValue.text.trim()
                 val bVal = bValue.text.trim()
-                textColor = "#${rVal}${gVal}${bVal}".toColorInt()
-                generateText = "Hello world"
+                Log.d("rVal", rVal)
+                Log.d("gVal", gVal)
+                Log.d("bVal", bVal)
+                try {
+                    textColor = "#${rVal}${gVal}${bVal}".toColorInt()
+                    generateText = "Hello world"
+                }
+                catch (e: IllegalArgumentException){
+                    println(e)
+                }
+
+
 
             }
         )
@@ -130,7 +144,9 @@ fun DisplayRGB() {
             ) {
                 Text(
                     text = generateText,
-                    modifier = Modifier.fillMaxSize().padding(10.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(10.dp),
                     textAlign = TextAlign.Center
                     )
             }
