@@ -86,7 +86,7 @@ fun RainbowPage(favColor: Array<out String?>? = null, navController: NavHostCont
                     val encodeHex = Uri.encode(hexCode)
                     navController.navigate("homepage/$name/$encodeHex"){
                         popUpTo ("homepage") {inclusive = false}
-                        launchSingleTop= true
+                        launchSingleTop = true
                     }
                 }
             ){

@@ -67,8 +67,6 @@ fun PageNavigation(){
 @Composable
 fun MainPage(favColorName: String? = null, hexColor: String? = null, navController: NavHostController) {
 
-
-
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
