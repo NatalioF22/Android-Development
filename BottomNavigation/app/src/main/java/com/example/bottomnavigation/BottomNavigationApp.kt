@@ -1,7 +1,5 @@
 package com.example.bottomnavigation
 
-import android.graphics.Color
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,7 +22,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,11 +39,18 @@ fun BottomNavigationApp() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(currentTitle,
-                    color = when(currentTitle){
-                        "Home" -> Color.RED
-                        else -> Color.BLACK
-                    } )},
+                title = {
+                    Text(currentTitle, color = when(currentTitle){
+                        "Home" -> bottomItem[0].color
+                        "Menu" -> bottomItem[1].color
+                        "Account" -> bottomItem[2].color
+                        "Rewards"-> bottomItem[3].color
+                        "Cart" -> topItem[0].color
+                        "Settings" -> topItem[1].color
+                        else -> {Color.Black}
+                    }
+
+                ) },
                 actions = {
                     // Overflow menu button
                     IconButton(onClick = { menuExpanded = true }) {
@@ -57,7 +62,7 @@ fun BottomNavigationApp() {
                     ) {
                         topItem.forEach {topItem ->
                             DropdownMenuItem(
-                                leadingIcon = { Icon(topItem.icon, contentDescription = topItem.title,tint = topItem.color) },
+                                leadingIcon = { Icon(topItem.icon, contentDescription = topItem.title, tint = topItem.color) },
                                 text = { Text(topItem.title, color = topItem.color) },
                                 onClick = {
                                     menuExpanded = false
@@ -73,9 +78,8 @@ fun BottomNavigationApp() {
             NavigationBar {
                 bottomItem.forEach { bottomItem ->
                     NavigationBarItem(
-                        icon = { Icon(bottomItem.icon, contentDescription = bottomItem.title, tint = bottomItem.color ) },
+                        icon = { Icon(bottomItem.icon, contentDescription = bottomItem.title, tint = bottomItem.color) },
                         label = { Text(bottomItem.title, color = bottomItem.color) },
-
                         // selected = true : the item is highlighted (you may have customized effect).
                         selected = currentScreen?.destination?.route == bottomItem.route,
                         onClick = {
@@ -92,8 +96,8 @@ fun BottomNavigationApp() {
             startDestination = "home",
             modifier = androidx.compose.ui.Modifier.padding(padding)
         ) {
-            composable("Home",) { HomeScreen() }
-            composable("Menu", ) { MenuScreen() }
+            composable("Home") { HomeScreen() }
+            composable("Menu") { MenuScreen() }
             composable("Account") { AccountScreen() }
             composable("Rewards") { RewardsScreen() }
             composable("Cart") { CartScreen() }
@@ -101,11 +105,4 @@ fun BottomNavigationApp() {
 
         }
     }
-}
-
-private fun getColor(title: String): Color {
-    when (title){
-        "Home" -> Color.RED
-    }
-    return Color.BLACK
 }

@@ -19,15 +19,15 @@ data class Item(
 )
 
 val bottomItem = listOf(
-    Item("Home", "Home", Icons.Filled.Home, Color.Green),
-    Item("Menu", "Menu", Icons.Filled.Fastfood, Color.Blue),
-    Item("Account", "Account", Icons.Filled.ManageAccounts, Color.Yellow),
-    Item("Rewards", "Rewards", Icons.Filled.Star, Color.Magenta)
+    Item("Home", "Home", Icons.Filled.Home, Color.Cyan),
+    Item("Menu", "Menu", Icons.Filled.Fastfood, Color.Red),
+    Item("Account", "Account", Icons.Filled.ManageAccounts, Color.Green),
+    Item("Rewards", "Rewards", Icons.Filled.Star, Color.Green)
 )
 
 val topItem = listOf(
-    Item("Cart", "Cart", Icons.Filled.AddShoppingCart, Color.DarkGray),
-    Item("Settings", "Settings", Icons.Filled.Build, Color.LightGray)
+    Item("Cart", "Cart", Icons.Filled.AddShoppingCart, Color.Magenta),
+    Item("Settings", "Settings", Icons.Filled.Build, Color.Yellow)
 )
 
 

@@ -13,6 +13,7 @@ fun HomeScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text("Home Screen",
             style = MaterialTheme.typography.headlineMedium,
+            color = bottomItem[0].color
         )
     }
 }
