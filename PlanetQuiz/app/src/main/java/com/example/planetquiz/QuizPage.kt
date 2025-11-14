@@ -1,7 +1,5 @@
 package com.example.planetquiz
 
-
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,9 +69,6 @@ fun QuizPage(index: Int, onBack:() -> Unit){
             if(message.isNotEmpty()){
                 Text(message)
             }
-
-
-
         }
     }
 }
